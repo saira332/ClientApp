@@ -9,9 +9,9 @@
 <!-- footer_end -->
 <div class="p-2">
     <table class="table table-sm"> 
-        <tr><th>Sender Id</th><td>{{message?.senderId}}</td></tr>
-        <tr><th>Receiver Id</th><td>{{message?.receiverId}}</td></tr>
-        <tr><th>Text</th><td>{{message?.text}}</td></tr>
-        <tr><th>DateTime</th><td>{{message?.when}}</td></tr>
+        <tr><th>Sender Id</th><td>{{message?.senderId || 'Loading Data...'}}</td></tr>
+        <tr><th>Receiver Id</th><td>{{message?.receiverId || 'Loading Data...'}}</td></tr>
+        <tr><th>Text</th><td>{{message?.text || 'Loading Data...'}}</td></tr>
+        <tr><th>DateTime</th><td>{{message?.when || 'Loading Data...'}}</td></tr>
     </table>
  </div>
