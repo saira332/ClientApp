@@ -23,6 +23,18 @@ export class TopNavComponent implements OnInit {
     alert("clicked");
     this._router.navigate(['/profile']);
   }
+  redirectToSignupD():void{
+    alert("signup");
+    this._router.navigate(['/donorSignup'])
+  }
+  redirectTocausesdetail():void{
+    alert("Causes Details");
+    this._router.navigate(['/causesDetails'])
+  }
+  redirectTocauses():void{
+    alert("Causes");
+    this._router.navigate(['/causes'])
+  }
   ngOnInit(): void {
   }
 

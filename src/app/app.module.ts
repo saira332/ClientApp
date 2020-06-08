@@ -19,6 +19,9 @@ import { LoginComponent } from './Components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RouterModule } from '@angular/router';
 import { ModelModule } from "./models/model.module";
+import { DonorSignupComponent } from './Components/donor-signup/donor-signup.component';
+import { CreatePostComponent } from './Components/create-post/create-post.component';
+import { CausesDetailsComponent } from './Components/causes-details/causes-details.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { ModelModule } from "./models/model.module";
     // AboutComponent,
     HomeComponent,
     ProfileComponent,
-    LoginComponent
+    LoginComponent,
+    DonorSignupComponent,
+    CreatePostComponent,
+    CausesDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,11 @@ import { ModelModule } from "./models/model.module";
       // {path: 'about', component: AboutComponent},
       {path: 'home', component: HomeComponent},
       {path: 'login', component: LoginComponent},
-      {path: 'profile', component: ProfileComponent}
+      {path: 'profile', component: ProfileComponent},
+      {path: 'donorSignup', component:DonorSignupComponent},
+      {path: 'createPost', component:CreatePostComponent},
+      {path: 'causesDetails', component:CausesDetailsComponent},
+      {path: 'causes', component:CausesAreaComponent}
     ])
   ],
   providers: [],

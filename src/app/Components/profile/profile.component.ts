@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -7,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
-  postText: string ='Posts';
-  reviewsText: string ='Reviews';
-  settingsText: string ='Settings';
+  constructor(private _router: Router) { }
+  postText: string ='posts';
+  reviewsText: string ='reviews';
+  settingsText: string ='settings';
 
   toogle1(): void {
     if(this.postText === 'Posts')
@@ -48,6 +49,12 @@ export class ProfileComponent implements OnInit {
       this.postText ='post';
     }
   }
+
+  createPost():void{
+    alert("clicked");
+    this._router.navigate(['/createPost']);
+  }
+
   ngOnInit(): void {
   }
 

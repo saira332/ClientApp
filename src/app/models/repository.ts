@@ -8,7 +8,7 @@ export class Repository {
     messageData: message;
     constructor(private http: HttpClient)
     {         
-        this.getmessage(2);
+        this.getmessage(4);
     }
     
     getmessage(id: number)
