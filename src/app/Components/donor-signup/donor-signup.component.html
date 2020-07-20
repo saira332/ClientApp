@@ -1,100 +1,103 @@
-    <div class="hero">
+    <div class="box" > 
         <div class="form_box">
             <div class="button_box">
                 <div id="btn"></div>
-            <button type="button" class="toggle_btn" onclick="Login()">LogIn</button>
-            <button type="button" class="toggle_btn" onclick="Register()">Register</button>
+            <button type="button" class="toggle_btn"  (click)="redirecttoSignup()">Register</button>
+            <button type="button" class="toggle_btn"  (click)="redirecttoLogin()">Login</button>
             </div>
-            <div>
-            <form  id="Login"class="input_group">
-                <h2>Fill following to login</h2>
-                <label>Email</label>
-                <input type="text" class="input-field" placeholder="Email@gmail.com" required><br><br>
-                <label>Password</label>
-                <input type="password" class="input-field" placeholder="enter password" required><br><br><br><br><br>
-                <button type="submit" class="submit_btn">Login</button>
-            </form>
-            <form id="Register" class="input_group">  
+            <form class="input_group"  [formGroup]="formModel" autocomplete="off" (submit)="onSubmit()">
                 <h2>Genral Detail</h2>
-                <label>Name</label>
-                <input type=" text" class="input-field" placeholder="donor_name" required><br>
-                <label>Father Name</label>
-                <input type="text" class="input-field" placeholder="Father_Name" required><br>
-                <label>CNIC</label>
-                <input type="text" class="input-field" placeholder="CNIC" required><br>
-                <label>DOB</label>
-                <input type="text" class="input-field" placeholder="DOb" required><br><br>
-                <button type="button" class="submit_btn" onclick="next()">Continue</button>
-            </form>
-            <form  id="contact"class="input_group">
-                <h2>Address and contact</h2>
-                <label>Country</label>
-                <input type="text" class="input-field-1" placeholder="country" required><br>
-                <label>City</label>
-                <input type="text" class="input-field-1" placeholder="city" required><br>
-                <label>State</label>
-                <input type="text" class="input-field-1" placeholder="state" required><br>
-                <label>Gender</label>
-                <input type="text" class="input-field-1" placeholder="gender" required><br>
-                <label>occupation</label>
-                <input type="text" class="input-field-1" placeholder="occupation" required><br><br>
-                <button type="button" class="submit_btn" onclick="Register()">back</button><br>
-                <button type="button" class="submit_btn" onclick="next1()">Continue</button>
-            </form>
-            <form id="pass" class="input_group">
-                <label>Address</label>
-                <input type="text" class="input-field-1" placeholder="address" required>
-                <label>Email</label>
-                <input type="password" class="input-field" placeholder="Email@gmail.com" required><br>
-                <label>Password</label>
-                <input type="password" class="input-field" placeholder="enter password" required><br>
-                <label>Confirm password</label>
-                <input type="text" class="input-field" placeholder="confirm password" required><br><br>
-                
-                <button type="button" class="submit_btn" onclick="next()">back</button><br>
-                <button type="submit" class="submit_btn" onclick="window.location='donar_registration.html'">Register</button>
-
+                <div class="form-group required">
+                    <label>Name</label>
+                    <input type=" text" class="input-field" placeholder="donor_name" formControlName="Name" required><br>
+                    <label class="text-danger" *ngIf="formModel.get('Name').touched && formModel.get('Name').errors?.required">This field is mandatory.</label>
+                </div>
+                <div class="form-group required">
+                    <label>Father Name</label>
+                    <input type="text" class="input-field" placeholder="Father Name" formControlName="FatherName" required><br>
+                    <label class="text-danger" *ngIf="formModel.get('FatherName').touched && formModel.get('FatherName').errors?.required">This field is mandatory.</label>
+                </div>
+                <div class="form-group required">
+                    <label>CNIC</label>
+                    <input type="text" class="input-field" placeholder="CNIC" formControlName="Cnic" required><br>
+                    <label class="text-danger" *ngIf="formModel.get('Cnic').touched && formModel.get('Cnic').errors?.required">This field is mandatory.</label>
+                    <label class="text-danger" *ngIf="formModel.get('Cnic').touched &&  formModel.get('Cnic').errors?.minlength">Minimum 13 characters required.</label>
+                    <label class="text-danger" *ngIf="formModel.get('Cnic').touched &&  formModel.get('Cnic').errors?.maxlength">Maximum 13 characters required.</label>
+                </div>
+                <div class="form-group required">    
+                    <label>DOB</label>
+                    <input type="datetime-local" class="input-field" placeholder="DOb" formControlName="Dob" required><br>
+                    <label class="text-danger" *ngIf=" formModel.get('Dob').touched &&  formModel.get('Dob').errors?.required">This field is mandatory.</label>
+                </div>
+                <div class="form-group required">
+                    <label>Gender</label>
+                    <input type="text" class="input-field-1" placeholder="gender" formControlName="Gender" required><br>
+                    <label class="text-danger" *ngIf=" formModel.get('Gender').touched &&  formModel.get('Gender').errors?.required">This field is mandatory.</label>
+                </div>
+                <div class="form-group required">
+                    <label>occupation</label>
+                    <input type="text" class="input-field-1" placeholder="occupation" formControlName="Occupation" required><br>
+                    <label class="text-danger" *ngIf=" formModel.get('Occupation').touched &&  formModel.get('Occupation').errors?.required">This field is mandatory.</label>
+                </div>
+                    <h2>Address</h2>
+                <div class="form-group required">
+                    <label>Country</label>
+                    <input type="text" class="input-field-1" placeholder="country" formControlName="Country" required><br>
+                    <label class="text-danger" *ngIf=" formModel.get('Country').touched &&  formModel.get('Country').errors?.required">This field is mandatory.</label>
+                </div>
+                <div class="form-group required">
+                    <label>City</label>
+                    <input type="text" class="input-field-1" placeholder="city" formControlName="City" required><br>
+                    <label class="text-danger" *ngIf=" formModel.get('City').touched &&  formModel.get('City').errors?.required">This field is mandatory.</label>
+                </div>
+                <div class="form-group required">
+                    <label>State</label>
+                    <input type="text" class="input-field-1" placeholder="state" formControlName="State" required><br>
+                    <label class="text-danger" *ngIf=" formModel.get('State').touched &&  formModel.get('State').errors?.required">This field is mandatory.</label>
+                </div>
+                <div class="form-group required">
+                    <label>Zip Code</label>
+                    <input type="text" class="input-field-1" placeholder="state" formControlName="Zip" required><br>
+                    <label class="text-danger" *ngIf=" formModel.get('Zip').touched &&  formModel.get('Zip').errors?.required">This field is mandatory.</label>
+                </div>
+                <div class="form-group required">
+                    <label>Address</label>
+                    <input type="text" class="input-field-1" placeholder="address" formControlName="Address" required><br>
+                    <label class="text-danger" *ngIf=" formModel.get('Address').touched &&  formModel.get('Address').errors?.required">This field is mandatory.</label>
+                </div>
+                <div class="form-group required">
+                    <label>Contact No.</label>
+                    <input type="text" class="input-field-1" placeholder="Contact No." formControlName="ContactNo" required><br>
+                    <label class="text-danger" *ngIf="formModel.get('ContactNo').touched &&  formModel.get('ContactNo').errors?.required">This field is mandatory.</label>
+                    <label class="text-danger" *ngIf="formModel.get('ContactNo').touched &&  formModel.get('ContactNo').errors?.minlength">Minimum 11 characters required.</label>
+                    <label class="text-danger" *ngIf="formModel.get('ContactNo').touched &&  formModel.get('ContactNo').errors?.maxlength">Maximum 11 characters required.</label>
+                </div>
+                    <h2>Security</h2>
+                <div class="form-group required">
+                    <label>Email</label>
+                    <input type="email" class="input-field" placeholder="Email@gmail.com" formControlName="Email" required><br>
+                    <label class="text-danger" *ngIf=" formModel.get('Email').touched &&  formModel.get('Email').errors?.email">Invalid email address.</label>
+                </div>
+                <div formGroupName="Passwords">
+                    <div class="form-group required">
+                        <label>Password</label>
+                        <input type="password" class="input-field" placeholder="enter password" formControlName="Password" required><br>
+                        <label class="text-danger" *ngIf="formModel.get('Passwords.Password').touched &&  formModel.get('Passwords.Password').errors?.required">This field is mandatory.</label>
+                        <label class="text-danger" *ngIf="formModel.get('Passwords.Password').touched &&  formModel.get('Passwords.Password').errors?.minlength">Minimum 8 characters required.</label>
+                    </div>
+                    <div class="form-group required">
+                        <label>Confirm password</label>
+                        <input type="password" class="input-field" placeholder="confirm password" formControlName="ConfirmPassword" required><br>
+                        <label class="text-danger" *ngIf="formModel.get('Passwords.ConfirmPassword').touched &&  formModel.get('Passwords.ConfirmPassword').errors?.required">This field is mandatory.</label>
+                        <label class="text-danger" *ngIf="formModel.get('Passwords.ConfirmPassword').touched &&  formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Confirm Password does not match.</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-8 offset-md-2">
+                        <label class="text-danger" *ngIf="!formModel.valid">Please fill all fields.</label>
+                        <button type="submit" class="submit_btn"   [disabled]="!formModel.valid">Register</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>  
-
-<script>
-   var x= document.getElementById("Login");
-   var y=document.getElementById("Register");
-   var c=document.getElementById("contact");
-   var z=document.getElementById("btn");
-   var p=document.getElementById("pass");
-
-//    var z= document.getElementById("btn")
-    function Register(){
-        x.style.left="-400px";
-        y.style.left="50px";
-        c.style.left ="-400px";
-        z.style.left="110px";
-        p.style.left ="-450px";
-
-    }
-    function Login(){
-        c.style.left="-450px";
-        x.style.left="50px";
-        y.style.left="450px";
-        z.style.left="0px";
-        p.style.left ="-450px";
-        
-    }
-    function next(){
-        x.style.right="-400px";
-        y.style.left="450px";
-        c.style.left= "50px";
-        z.style.left="110px";
-        p.style.top="600px";
-    }
-    function next1(){
-        x.style.right="-400px";
-        y.style.left="450px";
-        c.style.left="-450px";
-        z.style.left="110px";
-        p.style.top="100px";
-        p.style.left="50px";
-    }
-</script>

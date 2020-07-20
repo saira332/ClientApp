@@ -1,93 +1,13 @@
-<!-- <div class="container">
-  <div class="fb-profile">
-    <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
-    <img align="left" class="fb-image-profile thumbnail" src="http://lorempixel.com/180/180/people/9/" alt="Profile image example"/>
-    <div class="fb-profile-text">
-      <h1>Eli Macy</h1>
-      <p>Girls just wanna go fun.</p>
-    </div>
-  </div>
-</div> -->
-
-
-
-<!--&lt;!&ndash;&#45;&#45;&#45;&#45; Include the above in your HEAD tag &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-
-
-<!--<div class="container">-->
-<!--  <div class="row profile">-->
-<!--    <div class="col-md-3">-->
-<!--      <div class="profile-sidebar">-->
-<!--        &lt;!&ndash; SIDEBAR USERPIC &ndash;&gt;-->
-<!--        <div class="profile-userpic">-->
-<!--          <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">-->
-<!--        </div>-->
-<!--        &lt;!&ndash; END SIDEBAR USERPIC &ndash;&gt;-->
-<!--        &lt;!&ndash; SIDEBAR USER TITLE &ndash;&gt;-->
-<!--        <div class="profile-usertitle">-->
-<!--          <div class="profile-usertitle-name">-->
-<!--            Marcus Doe-->
-<!--          </div>-->
-<!--          <div class="profile-usertitle-job">-->
-<!--            Developer-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        &lt;!&ndash; END SIDEBAR USER TITLE &ndash;&gt;-->
-<!--        &lt;!&ndash; SIDEBAR BUTTONS &ndash;&gt;-->
-<!--        <div class="profile-userbuttons">-->
-<!--          <button type="button" class="btn btn-success btn-sm">Follow</button>-->
-<!--          <button type="button" class="btn btn-danger btn-sm">Message</button>-->
-<!--        </div>-->
-<!--        &lt;!&ndash; END SIDEBAR BUTTONS &ndash;&gt;-->
-<!--        &lt;!&ndash; SIDEBAR MENU &ndash;&gt;-->
-<!--        <div class="profile-usermenu">-->
-<!--          <ul class="nav">-->
-<!--            <li class="active">-->
-<!--              <a href="#">-->
-<!--                <i class="glyphicon glyphicon-home"></i>-->
-<!--                Overview </a>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--              <a href="#">-->
-<!--                <i class="glyphicon glyphicon-user"></i>-->
-<!--                Account Settings </a>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--              <a href="#" target="_blank">-->
-<!--                <i class="glyphicon glyphicon-ok"></i>-->
-<!--                Tasks </a>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--              <a href="#">-->
-<!--                <i class="glyphicon glyphicon-flag"></i>-->
-<!--                Help </a>-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--        </div>-->
-<!--        &lt;!&ndash; END MENU &ndash;&gt;-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="col-md-9">-->
-<!--      <div class="profile-content">-->
-<!--        Some user related content goes here...-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-<!--  <strong>Powered by <a href="http://j.mp/metronictheme" target="_blank">KeenThemes</a></strong>-->
-
-<!--<br>-->
 <div class="container_p container" style="margin-top: 50px;">
   <div class="profile-header">
     <div class="profile-img">
-      <img src="../../../assets/img/help/5.png" width="200" alt="Profile Image">
+      <img src="../../../assets/img/jelly.jpg" width="200" alt="Profile Image">
     </div>
     <div class="profile-nav-info">
-      <h3 class="user-name">user</h3>
+      <h3 class="user-name">{{accepter.accepterName || 'Loading Data...'}}</h3>
       <div class="address">
-        <p id="state" class="state">Punjab</p>
-        <span id="country" class="country">Pakistan</span>
+        <p id="state" class="state">{{accepter.state|| 'Loading Data...'}}</p>
+        <span id="country" class="country">{{accepter.country || 'Loading Data...'}}</span>
       </div>
 
     </div>
@@ -102,8 +22,8 @@
   <div class="main-bd">
     <div class="left-side">
       <div class="profile-side">
-        <p class="mobile-no"><i class="fa fa-phone"></i> +923xxx700</p>
-        <p class="user-mail"><i class="fa fa-envelope"></i> users@gmail.com</p>
+        <p class="mobile-no"><i class="fa fa-phone"></i> {{accepter.contactNo || 'Loading Data...'}}</p>
+        <p class="user-mail"><i class="fa fa-envelope"></i> {{accepter.email || 'Loading Data...'}}</p>
         <div class="user-bio">
           <h3>Bio</h3>
           <p class="bio">

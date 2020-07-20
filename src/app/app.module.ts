@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule } from "@angular/forms";
+
+// import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { TopNavComponent } from './Components/top-nav/top-nav.component';
@@ -22,6 +25,12 @@ import { ModelModule } from "./models/model.module";
 import { DonorSignupComponent } from './Components/donor-signup/donor-signup.component';
 import { CreatePostComponent } from './Components/create-post/create-post.component';
 import { CausesDetailsComponent } from './Components/causes-details/causes-details.component';
+import { DashboardComponent } from './Components/admin/dashboard/dashboard.component';
+import { NavbarComponent } from './Components/admin/navbar/navbar.component';
+import { SidebarComponent } from './Components/admin/sidebar/sidebar.component';
+import { FixedpluginComponent } from './Components/admin/fixedplugin/fixedplugin.component';
+import { UserProfileComponent } from './Components/admin/user-profile/user-profile.component';
+import { AccepterSignupComponent } from './Components/accepter-signup/accepter-signup.component';
 
 @NgModule({
   declarations: [
@@ -35,26 +44,36 @@ import { CausesDetailsComponent } from './Components/causes-details/causes-detai
     VolunteersAreaComponent,
     BecomeVolunterComponent,
     FooterComponent,
-    // AboutComponent,
     HomeComponent,
     ProfileComponent,
     LoginComponent,
     DonorSignupComponent,
     CreatePostComponent,
-    CausesDetailsComponent
+    CausesDetailsComponent,
+    DashboardComponent,
+    NavbarComponent,
+    SidebarComponent,
+    FixedpluginComponent,
+    UserProfileComponent,
+    AccepterSignupComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     ModelModule,
     RouterModule.forRoot([
-      // {path: 'about', component: AboutComponent},
+      {path: 'about', component: AboutAreaComponent},
       {path: 'home', component: HomeComponent},
-      {path: 'login', component: LoginComponent},
       {path: 'profile', component: ProfileComponent},
       {path: 'donorSignup', component:DonorSignupComponent},
       {path: 'createPost', component:CreatePostComponent},
       {path: 'causesDetails', component:CausesDetailsComponent},
-      {path: 'causes', component:CausesAreaComponent}
+      {path: 'causes', component:CausesAreaComponent},
+      {path: 'dashboard', component: DashboardComponent},
+      {path: 'userProfile', component: UserProfileComponent},
+      {path: 'login', component: LoginComponent},
+      {path: 'accepterSignup', component: AccepterSignupComponent}
     ])
   ],
   providers: [],

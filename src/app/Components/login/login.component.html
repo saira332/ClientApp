@@ -1,69 +1,20 @@
-<body style="background-color: #666666;">
-
-<div class="limiter">
-  <div class="container-login100">
-    <div class="wrap-login100">
-      <form class="login100-form validate-form">
-					<span class="login100-form-title p-b-43">
-						Login to continue
-					</span>
-
-
-        <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-          <input class="input100" type="text" name="email">
-          <span class="focus-input100"></span>
-          <span class="label-input100">Email</span>
-        </div>
-
-
-        <div class="wrap-input100 validate-input" data-validate="Password is required">
-          <input class="input100" type="password" name="pass">
-          <span class="focus-input100"></span>
-          <span class="label-input100">Password</span>
-        </div>
-
-        <div class="flex-sb-m w-full p-t-3 p-b-32">
-          <div class="contact100-form-checkbox">
-            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-            <label class="label-checkbox100" for="ckb1">
-              Remember me
-            </label>
-          </div>
-
-          <div>
-            <a href="#" class="txt1">
-              Forgot Password?
-            </a>
-          </div>
-        </div>
-
-
-        <div class="container-login100-form-btn">
-          <button (click)="redirectToProfile()" class="login100-form-btn">
-            Login
-          </button>
-        </div>
-
-        <div class="text-center p-t-46 p-b-20">
-						<span class="txt2">
-							or sign up using
-						</span>
-        </div>
-
-        <div class="login100-form-social flex-c-m">
-          <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
-            <i class="fa fa-facebook-f" aria-hidden="true"></i>
-          </a>
-
-          <a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
-            <i class="fa fa-twitter" aria-hidden="true"></i>
-          </a>
-        </div>
-      </form>
-
-      <div class="login100-more" style="background-image: url('~assets/Login_v18/images/bg-01.jpg');">
+<div class="hero" style="position: relative;"> 
+  <div class="form_box">
+      <div class="button_box">
+          <div id="btn"></div>
+      <button type="button" class="toggle_btn" onclick="Login()" (click)="redirecttoLogin()">LogIn</button>
+      <button type="button" class="toggle_btn" onclick="Signup()" (click)="redirecttoSignuo()">Register</button>
       </div>
-    </div>
+      <div>
+      <form  id="Login"class="input_group" [formGroup]="formModel" autocomplete="off" (submit)="onSubmit()">
+          <h2>Fill following to login</h2>
+          <label>Email</label>
+          <input type="text" class="input-field" placeholder="Email@gmail.com" formControlName="Email" required><br>
+          <label class="text-danger" *ngIf=" formModel.get('Email').touched &&  formModel.get('Email').errors?.email">Invalid email address.</label>
+          <label>Password</label>
+          <input type="password" class="input-field" placeholder="enter password" formControlName="Password" required><br>
+          <label class="text-danger" *ngIf="formModel.get('Password').touched &&  formModel.get('Password').errors?.required">This field is mandatory.</label>
+          <button type="submit" class="submit_btn">Login <i class="fas fa-sign-in-alt"></i> </button>
+      </form>
   </div>
-</div>
-</body>
+</div>  

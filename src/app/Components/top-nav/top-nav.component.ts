@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 
+declare var require: any
+
 @Component({
   selector: 'app-top-nav',
   templateUrl: './top-nav.component.html',
@@ -24,8 +26,12 @@ export class TopNavComponent implements OnInit {
     this._router.navigate(['/profile']);
   }
   redirectToSignupD():void{
-    alert("signup");
+    alert("Donor signup");
     this._router.navigate(['/donorSignup'])
+  }
+  redirectToAccSignup():void{
+    alert("Accepter signup");
+    this._router.navigate(['/accepterSignup'])
   }
   redirectTocausesdetail():void{
     alert("Causes Details");
@@ -34,6 +40,25 @@ export class TopNavComponent implements OnInit {
   redirectTocauses():void{
     alert("Causes");
     this._router.navigate(['/causes'])
+  }
+  redirectToAdmin():void{
+    alert("Causes");
+    this._router.navigate(['/dashboard'])
+  }
+
+  sendmsg(){
+    // const Nexmo = require('nexmo');
+
+    // const nexmo = new Nexmo({
+    //   apiKey: '0e42ade6',
+    //   apiSecret: 'o3dOVl9rgppdlqSP',
+    // });
+
+    // const from = 'Vonage APIs';
+    // const to = '923466877005';
+    // const text = 'Hello from Vonage SMS API';
+
+    // nexmo.message.sendSms(from, to, text);
   }
   ngOnInit(): void {
   }

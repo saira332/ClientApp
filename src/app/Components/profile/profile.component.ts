@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { Repository } from "../../models/repository";
+import { accepter } from 'src/app/models/accepter.model';
 
 @Component({
   selector: 'app-profile',
@@ -8,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private _router: Router) { }
+  constructor(private _router: Router, private repo: Repository) { }
   postText: string ='posts';
   reviewsText: string ='reviews';
   settingsText: string ='settings';
@@ -54,6 +56,10 @@ export class ProfileComponent implements OnInit {
     alert("clicked");
     this._router.navigate(['/createPost']);
   }
+
+  get accepter(): accepter {
+            return this.repo.accepter;     
+     }
 
   ngOnInit(): void {
   }

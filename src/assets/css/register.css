@@ -2,15 +2,18 @@
     margin: 0;
     padding: 0;
 }
-.hero{
+.header-area{
+    top: -60px;
+ }
+/* .hero{ 
     height:100%;
-    width: 100%;
+    width: 100%;  */
     /* background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)); */
-    background-position: center;
-    background-size: cover;
+    /* background-position: center;
+    background-size: cover; */
     /* position: absolute; */
-}
-
+/* }
+/*  */
 .form_box{
     height:615px;
     width: 380px;
@@ -23,13 +26,13 @@
 }
 .button_box{
     width: 220px;
+    margin-top: 0;
     margin: 35px auto;
     position: relative;
     box-shadow: 0 0 20px 9px #ebbba91f;
     border-radius: 30px;
 }
 .toggle_btn{
-
     padding: 10px 20px;
     cursor: pointer;
     background: transparent;
@@ -92,6 +95,7 @@
     border-radius: 30px;
 
 }
+/* 
 #Login{
     left: 50px;
 }
@@ -103,4 +107,4 @@
 }
 #pass{
     top: 610px;
-}
+} */ 

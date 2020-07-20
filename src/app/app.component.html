@@ -9,9 +9,17 @@
 <!-- footer_end -->
 <!-- <div class="p-2">
     <table class="table table-sm"> 
-        <tr><th>Sender Id</th><td>{{message?.senderId || 'Loading Data...'}}</td></tr>
-        <tr><th>Receiver Id</th><td>{{message?.receiverId || 'Loading Data...'}}</td></tr>
-        <tr><th>Text</th><td>{{message?.text || 'Loading Data...'}}</td></tr>
-        <tr><th>DateTime</th><td>{{message?.when || 'Loading Data...'}}</td></tr>
+        <tbody>
+            <tr>
+                <th i18n>Admin Name</th>
+                <th i18n>Email</th>
+                <th>password</th>
+                <th>Contact No</th>
+            </tr>
+            <tr *ngFor="let admin of admins">
+                <td>{{admin.adminName || 'Loading Data...'}}</td><td>{{admin.email || 'Loading Data...'}}</td><td>{{admin.password || 'Loading Data...'}}</td><td>{{admin.contactNo || 'Loading Data...'}}</td>
+            </tr>
+        </tbody>
     </table>
+     <button class="btn btn-primary m-1" (click)="createAdmin()">Create Admin</button>
  </div> -->
