@@ -1,6 +1,6 @@
 <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet"> -->
 <div class="testbox">
-      <form action="/">
+      <form [formGroup]="formModel" autocomplete="off" (submit)="onSubmit()">
         <div class="banner">
             <img src="../../../assets/img/banner/1.png" width="100%"> 
           <h1>Post</h1>
@@ -11,22 +11,36 @@
         <div class="colums">
           <div class="item">
             <label for="name" style="color: #fff;">Title<span>*</span></label>
-            <input id="name" placeholder="e.g. Help Yeati To Continue Her Primary Education" type="text" name="name" required/>
+            <input id="name" placeholder="e.g. Help Yeati To Continue Her Primary Education" type="text" formControlName="Title" required><br>
+            <label class="text-danger" *ngIf="formModel.get('Title').touched && formModel.get('Title').errors?.required">This field is mandatory.</label>
           </div>
           <div class="item">
             <p style="color: #fff;">Catagories<span>*</span></p>
-            <select>
-              <option selected value="" disabled selected></option>
-              <option value="b" >Medical Issue</option>
-              <option value="ch">Education</option>
-              <option value="v">Dowry</option>
-              <option value="n">Loan</option>
-              <option value="o">Other</option>
+            <select class="col-md-6" formControlName="Category" required><br>
+              <option selected value="" disabled selected>--select--</option>
+              <option value="Medical Issue" >Medical Issue</option>
+              <option value="Education">Education</option>
+              <option value="Dowry">Dowry</option>
+              <option value="Loan">Loan</option>
+              <option value="Other">Other</option>
             </select>
+            <label class="text-danger" *ngIf="formModel.get('Category').touched && formModel.get('Category').errors?.required">This field is mandatory.</label>
           </div>
           <div class="item">
-            <label for="visit">Discription<span style="color: red;">*</span></label>
-            <textarea id="visit" rows="3"></textarea>
+            <label for="name" >Time<span>*</span></label>
+            <input id="name" type="datetime-local" formControlName="Time" required><br>
+            <label class="text-danger" *ngIf="formModel.get('Time').touched && formModel.get('Time').errors?.required">This field is mandatory.</label>
+          </div>
+          
+          <div class="item">
+            <label for="visit">Description<span style="color: red;">*</span></label>
+            <textarea id="visit" rows="3" formControlName="Decription" required></textarea>
+            <!-- <label class="text-danger" *ngIf="formModel.get('Description').touched && formModel.get('Description').errors?.required">This field is mandatory.</label> -->
+          </div>
+          <div class="item">
+            <label for="name">Amount<span>*</span></label>
+            <input id="name" placeholder="e.g. 5000" type="text" formControlName="TragetAmount" required><br>
+            <label class="text-danger" *ngIf="formModel.get('TragetAmount').touched && formModel.get('TragetAmount').errors?.required">This field is mandatory.</label>
           </div>
           <div class="item">
             <label for="street">Image</label>
@@ -39,22 +53,24 @@
         <div class="question">
           <label>You want Urgent Money?<span style="color: red;">*</span></label>
           <div class="question-answer">
-            <div>
-              <input type="radio" value="none" id="radio_1" name="info"/>
-              <label for="radio_1" class="radio"><span>Yes</span></label>
-            </div>
-            <div>
-              <input  type="radio" value="none" id="radio_2" name="info"/>
-              <label for="radio_2" class="radio"><span>No</span></label>
-            </div>
+            <select class="col-md-6" formControlName="Urgent" required><br>>
+              <option selected value="" disabled selected>--select--</option>
+              <option value="yes" >Yes</option>
+              <option value="no">No</option>
+            </select>
+            <label class="text-danger" *ngIf="formModel.get('Urgent').touched && formModel.get('Urgent').errors?.required">This field is mandatory.</label>
           </div>
         </div>
         
-       
-   
-        <div class="btn-block">
-          <button type="submit" href="/">Post</button>
-        </div>
+        <div class="form-row">
+          <div class="form-group col-md-8 offset-md-2">
+              <label class="text-danger" *ngIf="!formModel.valid">Please fill all fields.</label>
+              <button type="submit" class="submit_btn"   [disabled]="!formModel.valid">Post</button>
+          </div>
+      </div>
+        <!-- <div class="btn-block">
+          <button type="submit" >Post</button>
+        </div> -->
       </form>    
 </div>
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { accepter } from 'src/app/models/accepter.model';
+import { Repository } from 'src/app/models/repository';
 
 function hello() {
   alert('Hello!!!');
@@ -11,8 +13,12 @@ function hello() {
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private repo:Repository) { }
 
+  get accepters(): accepter[]{
+      this.repo.getaccepeters();
+        return this.repo.accepters;
+      }
   ngOnInit(): void {
   }
 

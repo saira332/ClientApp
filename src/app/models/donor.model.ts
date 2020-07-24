@@ -1,11 +1,10 @@
-export class accepter {
+export class donor {
         constructor(
-                 public accepterId?: number,
-                 public accepterName?: string,
-                 public fatherName?: string,
+                 public donorId?: number,
+                 public donorName?: string,
                  public email?: string,
                  public password?: string,
-                 public contactNo?: string,
+                 public contactNo?: number,
                  public cnic?: string,
                  public dob?: Date,
                  public country?: string,
@@ -15,9 +14,6 @@ export class accepter {
                  public zipCode?: string,
                  public gender?: string,
                  public occupation?: string,
-                 public familyMembers?: number,
-                 public maritalStatus?: string,
-                 public salary?: number,
                  public code?: number,
                  public status?: string,
                  public adminId?: number

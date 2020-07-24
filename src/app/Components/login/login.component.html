@@ -5,7 +5,6 @@
       <button type="button" class="toggle_btn" onclick="Login()" (click)="redirecttoLogin()">LogIn</button>
       <button type="button" class="toggle_btn" onclick="Signup()" (click)="redirecttoSignuo()">Register</button>
       </div>
-      <div>
       <form  id="Login"class="input_group" [formGroup]="formModel" autocomplete="off" (submit)="onSubmit()">
           <h2>Fill following to login</h2>
           <label>Email</label>
@@ -13,7 +12,17 @@
           <label class="text-danger" *ngIf=" formModel.get('Email').touched &&  formModel.get('Email').errors?.email">Invalid email address.</label>
           <label>Password</label>
           <input type="password" class="input-field" placeholder="enter password" formControlName="Password" required><br>
-          <label class="text-danger" *ngIf="formModel.get('Password').touched &&  formModel.get('Password').errors?.required">This field is mandatory.</label>
+          <label class="text-danger" *ngIf="formModel.get('Password').touched &&  formModel.get('Password').errors?.required">This field is mandatory.</label><br>
+          <label>Login As: </label>
+          <select class="col-md-6" formControlName="type" required><br>
+              <option selected value="" disabled selected>--select--</option>
+              <option value="accepter" >Accepter</option>
+              <option value="donor">Donor</option>
+              <option value="admin">Admin</option>
+           </select>
+           <label class="text-danger" *ngIf="formModel.get('type').touched && formModel.get('type').errors?.required">This field is mandatory.</label>
+          
+           <label class="text-danger" *ngIf="!formModel.valid">Please fill all fields.</label>
           <button type="submit" class="submit_btn">Login <i class="fas fa-sign-in-alt"></i> </button>
       </form>
   </div>

@@ -31,6 +31,9 @@ import { SidebarComponent } from './Components/admin/sidebar/sidebar.component';
 import { FixedpluginComponent } from './Components/admin/fixedplugin/fixedplugin.component';
 import { UserProfileComponent } from './Components/admin/user-profile/user-profile.component';
 import { AccepterSignupComponent } from './Components/accepter-signup/accepter-signup.component';
+import { ViewAccepterComponent } from './Components/view-accepter/view-accepter.component';
+import { CalculatorComponent } from './Components/calculator/calculator.component';
+import { CommentComponent } from './Components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,10 @@ import { AccepterSignupComponent } from './Components/accepter-signup/accepter-s
     SidebarComponent,
     FixedpluginComponent,
     UserProfileComponent,
-    AccepterSignupComponent
+    AccepterSignupComponent,
+    ViewAccepterComponent,
+    CalculatorComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +79,9 @@ import { AccepterSignupComponent } from './Components/accepter-signup/accepter-s
       {path: 'dashboard', component: DashboardComponent},
       {path: 'userProfile', component: UserProfileComponent},
       {path: 'login', component: LoginComponent},
-      {path: 'accepterSignup', component: AccepterSignupComponent}
+      {path: 'accepterSignup', component: AccepterSignupComponent},
+      {path: 'viewAccepter', component: ViewAccepterComponent},
+      {path: 'calculator', component: CalculatorComponent}
     ])
   ],
   providers: [],

@@ -11,9 +11,19 @@ import { accepter } from 'src/app/models/accepter.model';
 export class ProfileComponent implements OnInit {
 
   constructor(private _router: Router, private repo: Repository) { }
+  
   postText: string ='posts';
   reviewsText: string ='reviews';
   settingsText: string ='settings';
+
+  
+  get accepter(): accepter {
+    this.repo.getaccepter(Number(localStorage.getItem('userId')));
+    return this.repo.accepter;  
+         
+  }
+
+
 
   toogle1(): void {
     if(this.postText === 'Posts')
@@ -57,9 +67,7 @@ export class ProfileComponent implements OnInit {
     this._router.navigate(['/createPost']);
   }
 
-  get accepter(): accepter {
-            return this.repo.accepter;     
-     }
+  
 
   ngOnInit(): void {
   }

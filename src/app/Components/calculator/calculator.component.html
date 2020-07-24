@@ -1,0 +1,41 @@
+
+<div class="hero">
+    <div class="form_box">
+  
+    <div >
+    <div id="Login" >
+      <h2>calculate zakat</h2>
+  <label>value of gold  </label>  &nbsp; &nbsp;
+  <input type="number" name="num1" [(ngModel)]="num1"  ><br><br>
+    </div>
+    
+      <label>value of silver</label>  &nbsp; &nbsp;
+      <input  type="number" name="num2" [(ngModel)]="num2"  ><br><br>
+    
+      <label>Cash in hand</label>  &nbsp; &nbsp;
+      <input  type="number" name="num4" [(ngModel)]="num4"  ><br><br>
+    
+      <label>Cash in bank</label>  &nbsp; &nbsp;
+      <input  type="number" name="num5" [(ngModel)]="num5"  ><br><br>
+    
+    <button (click)="add()" >zakat amount</button><br><br>
+    
+    <h3>result:{{num3}}
+    </h3>
+  
+   </div><br>
+   <div id="Register">
+    <div class="input-group">
+    <h2>calculate Fitrna</h2>
+    <label>No of Family members</label>  &nbsp; &nbsp;
+    <input type="number" name="numf1" [(ngModel)]="numf1" ><br><br>
+    <button (click)="addfitrana()" >flour fitrna</button><br><br>
+    <button (click)=" Dates()">Dates fitrnan</button><br><br>
+    <button (click)="Raisins()"> Raisins</button><br><br>
+    <h3>result:{{numf2}}</h3>
+    
+    </div>
+    
+    </div>
+  </div> 
+  </div>

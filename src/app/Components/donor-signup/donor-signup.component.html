@@ -23,6 +23,7 @@
                     <label class="text-danger" *ngIf="formModel.get('Cnic').touched && formModel.get('Cnic').errors?.required">This field is mandatory.</label>
                     <label class="text-danger" *ngIf="formModel.get('Cnic').touched &&  formModel.get('Cnic').errors?.minlength">Minimum 13 characters required.</label>
                     <label class="text-danger" *ngIf="formModel.get('Cnic').touched &&  formModel.get('Cnic').errors?.maxlength">Maximum 13 characters required.</label>
+                    <label class="text-danger" *ngIf="formModel.get('Cnic').touched &&  formModel.get('Cnic').errors?.pattern">Enter only Numbers</label>
                 </div>
                 <div class="form-group required">    
                     <label>DOB</label>
@@ -57,8 +58,9 @@
                 </div>
                 <div class="form-group required">
                     <label>Zip Code</label>
-                    <input type="text" class="input-field-1" placeholder="state" formControlName="Zip" required><br>
+                    <input type="text" class="input-field-1" placeholder="Zip Code" formControlName="Zip" required><br>
                     <label class="text-danger" *ngIf=" formModel.get('Zip').touched &&  formModel.get('Zip').errors?.required">This field is mandatory.</label>
+                    <label class="text-danger" *ngIf="formModel.get('Zip').touched &&  formModel.get('Zip').errors?.pattern">Enter only Numbers</label>
                 </div>
                 <div class="form-group required">
                     <label>Address</label>
@@ -71,6 +73,7 @@
                     <label class="text-danger" *ngIf="formModel.get('ContactNo').touched &&  formModel.get('ContactNo').errors?.required">This field is mandatory.</label>
                     <label class="text-danger" *ngIf="formModel.get('ContactNo').touched &&  formModel.get('ContactNo').errors?.minlength">Minimum 11 characters required.</label>
                     <label class="text-danger" *ngIf="formModel.get('ContactNo').touched &&  formModel.get('ContactNo').errors?.maxlength">Maximum 11 characters required.</label>
+                    <label class="text-danger" *ngIf="formModel.get('ContactNo').touched &&  formModel.get('ContactNo').errors?.pattern">Enter only Numbers</label>
                 </div>
                     <h2>Security</h2>
                 <div class="form-group required">
@@ -91,6 +94,12 @@
                         <label class="text-danger" *ngIf="formModel.get('Passwords.ConfirmPassword').touched &&  formModel.get('Passwords.ConfirmPassword').errors?.required">This field is mandatory.</label>
                         <label class="text-danger" *ngIf="formModel.get('Passwords.ConfirmPassword').touched &&  formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Confirm Password does not match.</label>
                     </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+                        <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+                      </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-8 offset-md-2">
