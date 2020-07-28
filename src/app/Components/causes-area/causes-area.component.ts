@@ -34,6 +34,10 @@ export class CausesAreaComponent implements OnInit {
     else if(sessionStorage.getItem('uType') == "donor"){
       this.repo.createComment(new comment(null,body.pid,null,body.text,null, Number(sessionStorage.getItem('userId'))));
     }
+    else{
+      this._router.navigate(['/login']);
+      alert("plz login to countinue");
+    }
     this.formModel.reset();
   }
   

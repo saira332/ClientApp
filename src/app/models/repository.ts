@@ -13,13 +13,13 @@ import { using } from 'rxjs';
 import { notificatio } from './notification.model';
 import { donation } from './donation.model';
 
-const loginUrl= "http://sairaali51-001-site1.ftempurl.com/api/Login";
-const donorUrl= "http://sairaali51-001-site1.ftempurl.com/api/Donor";
-const adminsUrl= "http://sairaali51-001-site1.ftempurl.com/api/Admin";
-const accepterUrl ="http://sairaali51-001-site1.ftempurl.com/api/Accepter";
-const postUrl = "http://sairaali51-001-site1.ftempurl.com/api/Post";
-const commentUrl= "http://sairaali51-001-site1.ftempurl.com/api/Comment";
-const notiUrl="http://sairaali51-001-site1.ftempurl.com/api/Notification";
+const loginUrl= "https://localhost:44371/api/Login";
+const donorUrl= "https://localhost:44371/api/Donor";
+const adminsUrl= "https://localhost:44371/api/Admin";
+const accepterUrl ="https://localhost:44371/api/Accepter";
+const postUrl = "https://localhost:44371/api/Post";
+const commentUrl= "https://localhost:44371/api/Comment";
+const notiUrl="https://localhost:44371/api/Notification";
 
 @Injectable() 
 export class Repository {
@@ -118,10 +118,20 @@ createLogin(logg: login,id:number)
 //Comment
 createComment(acce: comment) 
     {         
-         
-        this.http.post<number>(commentUrl, acce)             
-            .subscribe(id => {                 
-                acce.comment_id = id;      
+         let data = {             
+            comment_id: acce.comment_id,
+            post_id: acce.post_id,
+            accepter_id: acce.accepter_id,
+            comment_text: acce.comment_text,
+            time: acce.time,
+            donor_id: acce.donor_id
+                   
+        }; 
+        this.http.post<number>(commentUrl, data)             
+            .subscribe(id => {             
+                console.log(data);    
+                acce.comment_id = id;   
+                this.comments.push(data); 
             });  
         
         return "created";
@@ -137,13 +147,17 @@ createComment(acce: comment)
         return this.com;
     }
     replaceComment(acce: comment) {         
-        // let data = {             
-        //      
-        //            
-        // };         
+        let data = {             
+             
+                   
+        };         
         this.http.put(`${commentUrl}/${acce.comment_id}`, acce)             
         .subscribe(() => this.getpost(acce.comment_id));     
         console.log(acce);
+    }
+    deleteComment(id: number)
+    {
+        this.http.delete(notiUrl+"/"+id).subscribe();
     }
 
 
@@ -184,6 +198,10 @@ createPost(acce: post)
         };         
         this.http.put(`${postUrl}/${acce.post_id}`, data)             
         .subscribe(() => this.getpost(acce.post_id));     
+    }
+    deletePost(id: number)
+    {
+        this.http.delete(postUrl+"/"+id).subscribe();
     }
 
 
@@ -234,7 +252,10 @@ createDonor(acce: donor)
         console.log("data received");
         return this.donor;
     }
-
+    deleteDonor(id: number)
+    {
+        this.http.delete(donorUrl+"/"+id).subscribe();
+    }
 //Accepters
     createAccepter(acce: accepter,formData: FormData) 
     {         
@@ -286,6 +307,10 @@ createDonor(acce: donor)
     get Accepter() : accepter{
         return this.accepter;
     }
+    deleteAccepter(id: number)
+    {
+        this.http.delete(accepterUrl+"/"+id).subscribe();
+    }
     
 //Admin
     createAdmin(prod: admin) {         
@@ -329,6 +354,10 @@ createDonor(acce: donor)
     get Admin() : admin{
         console.log("data received");
         return this.admin;
+    }
+    deleteAdmin(id: number)
+    {
+        this.http.delete(adminsUrl+"/"+id).subscribe();
     }
 
 }

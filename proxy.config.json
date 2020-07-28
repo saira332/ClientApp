@@ -1,0 +1,7 @@
+{
+    "/api/*":{
+        "target": "http://sairaali51-001-site1.ftempurl.com",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}
