@@ -4,9 +4,9 @@ import { post } from './post.model';
 
 export class imageupload {
         constructor(
-                 public imageId?: number,
-                 public imageName?: string,
-                 public postId?:post,
+                 public image_id?: number,
+                 public image_name?: string,
+                 public post_id?:number,
                  public path?: string) {
         } 
 

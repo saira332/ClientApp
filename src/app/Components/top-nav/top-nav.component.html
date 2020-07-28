@@ -16,9 +16,9 @@
                 <ul id="navigation">
                   <li style="color: black!;"><a (click)="edirectToHome()">Home</a></li>
                   <li><a (click)="redirectToAbout()">About</a></li>
-                  <li><a (click)="redirectTocauses()">causes</a></li>
-                  <li><a href="impact.html">impact</a></li>
+                  <li><a (click)="redirectTocauses()">Posts</a></li>
                   <li><a (click)="redirectToProfile()">Profile </a></li>
+                  <li><a (click)="redirecttoLogin()">Login</a></li>
                   <li><a href="#">Register <i class="ti-angle-down"></i></a>
                     <ul class="submenu">
                       <li><a (click)="redirectToSignupD()">As Donor</a></li>
@@ -27,17 +27,17 @@
                   </li>
                   <li><a href="#">pages <i class="ti-angle-down"></i></a>
                     <ul class="submenu">
-                      <li><a (click)="redirectTocausesdetail()">causes-details</a></li>
                       <li><a (click)="redirectToAdmin()">Admin</a></li>
                     </ul>
                   </li>
-                  <li><a href="contact.html">Contact</a></li>
+                  <li><a (click)="redirectToCal()">Calculator</a></li>
                   
                 </ul>
               </nav>
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+            <button (click)="toogle1()">{{login}}</button>
             <div class="donate_now">
               <a href="#" class="boxed-btn" (click)="redirectToSignupD()">Donate Now</a>
               <div id="google_translate_element"></div>

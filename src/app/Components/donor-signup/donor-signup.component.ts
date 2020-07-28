@@ -19,7 +19,6 @@ export class DonorSignupComponent implements OnInit {
 
   formModel = this.fb.group({
     Name: ['', Validators.required],
-    FatherName: ['', Validators.required],
     Cnic: ['', [Validators.required, Validators.minLength(13),Validators.maxLength(13),Validators.pattern("^[0-9]*$")]],
     Dob: ['', Validators.required],
     Gender: ['', Validators.required],
@@ -42,8 +41,6 @@ export class DonorSignupComponent implements OnInit {
 
   comparePasswords(fb: FormGroup) {
     let confirmPswrdCtrl = fb.get('ConfirmPassword');
-    //passwordMismatch
-    //confirmPswrdCtrl.errors={passwordMismatch:true}
     if (confirmPswrdCtrl.errors == null || 'passwordMismatch' in confirmPswrdCtrl.errors) {
       if (fb.get('Password').value != confirmPswrdCtrl.value)
         confirmPswrdCtrl.setErrors({ passwordMismatch: true });
@@ -53,18 +50,10 @@ export class DonorSignupComponent implements OnInit {
   }
 
   
-  public uploadFile = (files) => {
-    if (files.length === 0) {
-      return;
-    }
-    let fileToUpload = <File>files[0];
-    formData.append('file', fileToUpload, fileToUpload.name);
-  }
 
   onSubmit() {
     var body = {
       Name:this.formModel.value.Name,
-      FatherName: this.formModel.value.FatherName,
       Cnic: this.formModel.value.Cnic,
       Dob: this.formModel.value.Dob,
       Gender: this.formModel.value.Gender,
@@ -82,11 +71,10 @@ export class DonorSignupComponent implements OnInit {
    
     console.log(body);
     this.repo.createDonor(new donor(null,body.Name,body.Email,body.Passwords,Number(body.ContactNo),
-      body.Cnic,body.Dob,body.ContactNo,body.City,body.State,body.Address,body.Zip,
-      body.Gender,body.Occupation,this.val,"not active",null),formData,0);
+      body.Cnic,body.Dob,body.Country,body.City,body.State,body.Address,body.Zip,
+      body.Gender,body.Occupation,this.val,"not active",null));
     this.formModel.reset();
     alert("Donor Created");
-        // this.toastr.success('New user created!', 'Registration successful.');
   }
 
 

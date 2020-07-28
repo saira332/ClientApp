@@ -1,26 +1,26 @@
 export class accepter {
         constructor(
-                 public accepterId?: number,
-                 public accepterName?: string,
-                 public fatherName?: string,
+                 public accepter_id?: number,
+                 public accepter_name?: string,
+                 public father_name?: string,
                  public email?: string,
                  public password?: string,
-                 public contactNo?: string,
-                 public cnic?: string,
-                 public dob?: Date,
+                 public contact_no?: string,
+                 public CNIC?: string,
+                 public DOB?: Date,
                  public country?: string,
                  public city?: string,
                  public state?: string,
                  public address?: string,
-                 public zipCode?: string,
+                 public zip_code?: string,
                  public gender?: string,
                  public occupation?: string,
-                 public familyMembers?: number,
-                 public maritalStatus?: string,
+                 public family_members?: number,
+                 public marital_status?: string,
                  public salary?: number,
                  public code?: number,
                  public status?: string,
-                 public adminId?: number
+                 public admin_id?: number
         ) {
                   } 
 

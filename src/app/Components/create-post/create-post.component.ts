@@ -12,8 +12,11 @@ const formData = new FormData();
   styleUrls: ['./create-post.component.css']
 })
 export class CreatePostComponent implements OnInit {
+  time: Date;
 
-  constructor(private _router: Router, private repo: Repository,private fb: FormBuilder) { }
+  constructor(private _router: Router, private repo: Repository,private fb: FormBuilder) { 
+    setInterval( ()=> this.time = new Date(), 1000);
+  }
 
   formModel = this.fb.group({
     Title: ['', Validators.required],
@@ -28,12 +31,8 @@ export class CreatePostComponent implements OnInit {
 
   });
 
-  val = Math.floor(1000 + Math.random() * 9000);
-
   comparePasswords(fb: FormGroup) {
     let confirmPswrdCtrl = fb.get('ConfirmPassword');
-    //passwordMismatch
-    //confirmPswrdCtrl.errors={passwordMismatch:true}
     if (confirmPswrdCtrl.errors == null || 'passwordMismatch' in confirmPswrdCtrl.errors) {
       if (fb.get('Password').value != confirmPswrdCtrl.value)
         confirmPswrdCtrl.setErrors({ passwordMismatch: true });
@@ -67,11 +66,18 @@ export class CreatePostComponent implements OnInit {
       AccepterId: 0,
       DonorId: 0
     };
-    
+    if(sessionStorage.getItem('uType')=="accepter")
+    {
+      this.repo.createPost(new post(null,body.Title,body.Category,body.Description,Number(body.TragetAmount),
+      Number(body.ReceivedAmount),body.Time,Number(body.Shares),body.Urgent,Number(sessionStorage.getItem('userId')),null));
+    }
+    else if(sessionStorage.getItem('uType') == "donor"){
+      this.repo.createPost(new post(null,body.Title,body.Category,body.Description,Number(body.TragetAmount),
+      Number(body.ReceivedAmount),body.Time,Number(body.Shares),body.Urgent,null,Number(sessionStorage.getItem('userId'))));
+    }
    
     console.log(body);
-    this.repo.createPost(new post(null,body.Title,body.Category,body.Description,Number(body.TragetAmount),
-      Number(body.ReceivedAmount),body.Time,Number(body.Shares),body.Urgent,null,null),formData);
+
     this.formModel.reset();
     alert("post uploaded");
   }

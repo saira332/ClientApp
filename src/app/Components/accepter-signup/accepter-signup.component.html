@@ -1,4 +1,4 @@
-<div class="box" > 
+<div class="box container" > 
   <div class="form_box">
       <div class="button_box">
           <div id="btn"></div>
@@ -9,7 +9,7 @@
           <h2>Genral Detail</h2>
           <div class="form-group required">
               <label>Name</label>
-              <input type=" text" class="input-field" placeholder="donor_name" formControlName="Name" required><br>
+              <input type=" text" class="input-field" placeholder="e.g alex" formControlName="Name" required><br>
               <label class="text-danger" *ngIf="formModel.get('Name').touched && formModel.get('Name').errors?.required">This field is mandatory.</label>
           </div>
           <div class="form-group required">
@@ -112,19 +112,34 @@
                   <label class="text-danger" *ngIf="formModel.get('Passwords.ConfirmPassword').touched &&  formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Confirm Password does not match.</label>
               </div>
           </div>
-          <h2>Documents</h2>
-          <div class="form-row">
-              <div class="col-md-6" style="float: left;">
-                  <label>Medical Certificate</label>
-                  <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
-                  <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
-              </div> 
-              <div class="col-md-6" style="float: right;">
-                <label>Verified Documents</label>
-                <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
-                <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+          
+            <!-- <div class="form-group">
+                <label for="name">Name</label>
+                <i>select Verified document and medical certifica</i>
+                <input 
+                    formControlName="name"
+                    id="name" 
+                    type="text" 
+                    class="form-control">
+                <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+                    <div *ngIf="f.name.errors.required">Name is required.</div>
+                    <div *ngIf="f.name.errors.minlength">Name should be 3 character.</div>
+                </div>
             </div>
-          </div>
+              
+            <div class="form-group">
+                <label for="file">File</label>
+                <input 
+                    formControlName="file"
+                    id="file" 
+                    type="file" 
+                    multiple
+                    class="form-control"
+                    (change)="onFileChange($event)">
+                <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                    <div *ngIf="f.file.errors.required">File is required.</div>
+                </div>
+            </div> -->
           <div class="form-row">
               <div class="form-group col-md-8 offset-md-2">
                   <label class="text-danger" *ngIf="!formModel.valid">Please fill all fields.</label>

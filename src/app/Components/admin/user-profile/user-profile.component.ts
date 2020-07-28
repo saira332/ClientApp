@@ -9,6 +9,10 @@ import { Repository } from 'src/app/models/repository';
 export class UserProfileComponent implements OnInit {
 
   constructor(private repo: Repository) { }
+  usertype = sessionStorage.getItem('Usertype');
+
+
+
    replaceProduct() {         
     let p = this.repo.admin[0];         
     p.name = "Modified Product";         
@@ -16,6 +20,14 @@ export class UserProfileComponent implements OnInit {
     this.repo.replaceAdmin(p);     
   }
   ngOnInit(): void {
+    if(this.usertype == "accepter"){
+      this.repo.getaccepter(this.repo.uId);
+    }
+    else if(this.usertype == "donor")
+    {
+      this.repo.getdonor(this.repo.uId);
+    }
+
   }
 
 }

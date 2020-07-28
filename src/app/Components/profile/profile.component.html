@@ -4,10 +4,10 @@
       <img src="../../../assets/img/jelly.jpg" width="200" alt="Profile Image">
     </div>
     <div class="profile-nav-info">
-      <h3 class="user-name">{{accepter.accepterName || 'Loading Data...'}}</h3>
+      <h3 class="user-name" *ngIf="accepter">{{accepter.accepter_name || 'jack'}}</h3>
       <div class="address">
-        <p id="state" class="state">{{accepter.state|| 'Loading Data...'}}</p>
-        <span id="country" class="country">{{accepter.country || 'Loading Data...'}}</span>
+        <p id="state" class="state" *ngIf="accepter">{{accepter.state|| 'Loading Data...'}}</p>
+        <span id="country" class="country" *ngIf="accepter">{{accepter.country || 'Loading Data...'}}</span>
       </div>
 
     </div>
@@ -22,8 +22,8 @@
   <div class="main-bd">
     <div class="left-side">
       <div class="profile-side">
-        <p class="mobile-no"><i class="fa fa-phone"></i> {{accepter.contactNo || 'Loading Data...'}}</p>
-        <p class="user-mail"><i class="fa fa-envelope"></i> {{accepter.email || 'Loading Data...'}}</p>
+        <p class="mobile-no" *ngIf="accepter"><i class="fa fa-phone" ></i> {{accepter.contact_no || '234567'}}</p>
+        <p class="user-mail" *ngIf="accepter"><i class="fa fa-envelope" ></i> {{accepter.email || 'jack@gmail.com'}}</p>
         <div class="user-bio">
           <h3>Bio</h3>
           <p class="bio">

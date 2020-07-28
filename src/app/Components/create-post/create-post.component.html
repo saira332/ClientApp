@@ -28,6 +28,7 @@
           </div>
           <div class="item">
             <label for="name" >Time<span>*</span></label>
+            {{time | date:"MMM dd - hh:mm:ss a"}}
             <input id="name" type="datetime-local" formControlName="Time" required><br>
             <label class="text-danger" *ngIf="formModel.get('Time').touched && formModel.get('Time').errors?.required">This field is mandatory.</label>
           </div>

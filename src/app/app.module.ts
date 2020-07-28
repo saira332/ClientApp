@@ -33,7 +33,14 @@ import { UserProfileComponent } from './Components/admin/user-profile/user-profi
 import { AccepterSignupComponent } from './Components/accepter-signup/accepter-signup.component';
 import { ViewAccepterComponent } from './Components/view-accepter/view-accepter.component';
 import { CalculatorComponent } from './Components/calculator/calculator.component';
-import { CommentComponent } from './Components/comment/comment.component';
+import { VerifyCodeComponent } from './Components/verify-code/verify-code.component';
+import { InfoComponent } from './Components/info/info.component';
+import { NotificationComponent } from './Components/Admin/notification/notification.component';
+import { DonorProfileComponent } from './Components/donor-profile/donor-profile.component';
+import { DonorComponent } from './Components/Admin/donor/donor.component';
+import { AccepterComponent } from './Components/Admin/accepter/accepter.component';
+import { DonorEditProfileComponent } from './Components/donor-edit-profile/donor-edit-profile.component';
+import { AccepetrEditProfileComponent } from './Components/accepetr-edit-profile/accepetr-edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +68,14 @@ import { CommentComponent } from './Components/comment/comment.component';
     AccepterSignupComponent,
     ViewAccepterComponent,
     CalculatorComponent,
-    CommentComponent
+    VerifyCodeComponent,
+    InfoComponent,
+    NotificationComponent,
+    DonorProfileComponent,
+    DonorComponent,
+    AccepterComponent,
+    DonorEditProfileComponent,
+    AccepetrEditProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +95,13 @@ import { CommentComponent } from './Components/comment/comment.component';
       {path: 'login', component: LoginComponent},
       {path: 'accepterSignup', component: AccepterSignupComponent},
       {path: 'viewAccepter', component: ViewAccepterComponent},
-      {path: 'calculator', component: CalculatorComponent}
+      {path: 'calculator', component: CalculatorComponent},
+      {path: 'notification', component: NotificationComponent},
+      {path: 'donorProfile', component: DonorProfileComponent},
+      {path: 'donor', component: DonorComponent},
+      {path: 'accepter', component: AccepterComponent},
+      {path: 'editAccepter', component: AccepetrEditProfileComponent},
+      {path: 'editDonor', component: DonorEditProfileComponent}
     ])
   ],
   providers: [],

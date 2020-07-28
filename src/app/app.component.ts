@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { Repository } from "./models/repository";
-import { message } from "./models/message.model";
-import { admin } from './models/admin.model';
 
 @Component({
   selector: 'app-root',

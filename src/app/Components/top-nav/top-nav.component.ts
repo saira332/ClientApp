@@ -9,56 +9,53 @@ declare var require: any
   styleUrls: ['./top-nav.component.css']
 })
 export class TopNavComponent implements OnInit {
-
+  login: string ="Login";
+  toogle1(): void {
+    if(sessionStorage.getItem('userId'))
+    {
+      this.login = 'Logout';
+    }
+    else{
+      this.login = 'Login';
+    }
+    if(this.login == "Logout")
+    {
+      sessionStorage.clear();
+    }
+    else{
+      this.redirecttoLogin();
+    }
+  }
+  
   // tslint:disable-next-line:variable-name
   constructor(private _router: Router) { }
 
   redirectToAbout(): void {
-    alert("clicked");
     this._router.navigate(['/about']);
   }
   edirectToHome(): void {
-    alert("clicked");
     this._router.navigate(['/home']);
   }
   redirectToProfile(): void {
-    alert("clicked");
     this._router.navigate(['/profile']);
   }
   redirectToSignupD():void{
-    alert("Donor signup");
     this._router.navigate(['/donorSignup'])
   }
   redirectToAccSignup():void{
-    alert("Accepter signup");
     this._router.navigate(['/accepterSignup'])
   }
-  redirectTocausesdetail():void{
-    alert("Causes Details");
-    this._router.navigate(['/causesDetails'])
+  redirecttoLogin(){
+    this._router.navigate(['/login'])
   }
   redirectTocauses():void{
-    alert("Causes");
     this._router.navigate(['/causes'])
   }
   redirectToAdmin():void{
-    alert("Causes");
     this._router.navigate(['/dashboard'])
   }
-
-  sendmsg(){
-    // const Nexmo = require('nexmo');
-
-    // const nexmo = new Nexmo({
-    //   apiKey: '0e42ade6',
-    //   apiSecret: 'o3dOVl9rgppdlqSP',
-    // });
-
-    // const from = 'Vonage APIs';
-    // const to = '923466877005';
-    // const text = 'Hello from Vonage SMS API';
-
-    // nexmo.message.sendSms(from, to, text);
+  redirectToCal(){
+    this._router.navigate(['/calculator'])
   }
   ngOnInit(): void {
   }

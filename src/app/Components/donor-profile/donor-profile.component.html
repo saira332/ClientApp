@@ -1,0 +1,85 @@
+<div class="container_p container" style="margin-top: 50px;">
+    <div class="profile-header">
+      <div class="profile-img">
+        <img src="../../../assets/img/jelly.jpg" width="200" alt="Profile Image">
+      </div>
+      <div class="profile-nav-info">
+        <h3 class="user-name" *ngIf="donor">{{donor.donor_name|| 'jack'}}</h3>
+        <div class="address">
+          <p id="state" class="state" *ngIf="donor">{{donor.state|| 'Loading Data...'}}</p>
+          <span id="country" class="country" *ngIf="donor">{{donor.country || 'Loading Data...'}}</span>
+        </div>
+  
+      </div>
+      <div class="profile-option">
+        <div class="notification">
+          <i class="fa fa-bell"></i>
+          <span class="alert-message">3</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="main-bd">
+      <div class="left-side">
+        <div class="profile-side">
+          <p class="mobile-no" *ngIf="donor"><i class="fa fa-phone" ></i> {{donor.contact_no || '234567'}}</p>
+          <p class="user-mail" *ngIf="donor"><i class="fa fa-envelope" ></i> {{donor.email || 'jack@gmail.com'}}</p>
+          <div class="user-bio">
+            <h3>Bio</h3>
+            <p class="bio">
+              In general, your professional background, educational history, skill set, and/or achievements.
+            </p>
+          </div>
+          <div class="profile-btn">
+            <button class="createbtn" id="Create-post"><i class="fa fa-plus"></i> <a (click)="createPost()" > Create</a></button>
+          </div>
+          <div class="user-rating">
+            <h3 class="rating">4.5</h3>
+            <div class="rate">
+              <div class="star-outer">
+                <div class="star-inner">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+              </div>
+              <span class="no-of-user-rate"><span>123</span>&nbsp;&nbsp;reviews</span>
+            </div>
+  
+          </div>
+        </div>
+  
+      </div>
+      <div class="right-side">
+  
+        <div class="nav">
+          <ul>
+            <li  class="user-post active"><a (click)="toogle1()">{{postText}}</a></li>
+            <li  class="user-review"><a (click)="toogle2()">{{reviewsText}}</a></li>
+            <li  class="user-setting"><a (click)="toogle3()"> {{settingsText}}</a></li>
+          </ul>
+        </div>
+        <div class="profile-body">
+          <div class="profile-posts tab" *ngIf="postText === 'Posts'">
+            <h1>Your Post</h1>
+            <p>Its time to charity..</p>
+          </div>
+          <div class="profile-reviews tab" *ngIf="reviewsText === 'Reviews'">
+            <h1>User reviews</h1>
+            <p>This app is great!</p>
+          </div>
+          <div class="profile-settings tab" >
+            <div class="account-setting" *ngIf="settingsText === 'Settings'">
+              <h1>Acount Setting</h1>
+              <p>settings.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  

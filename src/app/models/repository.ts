@@ -1,4 +1,4 @@
-import { message } from "./message.model";
+
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpEventType } from "@angular/common/http";
 import { accepter } from './accepter.model';
@@ -7,14 +7,19 @@ import { docupload } from './docupload.model';
 import { donor } from './donor.model';
 import { post } from './post.model';
 import { imageupload } from './imageupload.model';
-import { variable } from './variable.model';
 import { login } from './login.model';
+import { comment } from './comment.model';
+import { using } from 'rxjs';
+import { notificatio } from './notification.model';
+import { donation } from './donation.model';
 
-const loginUrl= "https://localhost:44371/api/login";
-const donorUrl= "https://localhost:44371/api/donors";
-const adminsUrl= "https://localhost:44371/api/admins";
-const accepterUrl ="https://localhost:44371/accepters";
-const postUrl = "https://localhost:44371/posts";
+const loginUrl= "http://sairaali51-001-site1.ftempurl.com/api/Login";
+const donorUrl= "http://sairaali51-001-site1.ftempurl.com/api/Donor";
+const adminsUrl= "http://sairaali51-001-site1.ftempurl.com/api/Admin";
+const accepterUrl ="http://sairaali51-001-site1.ftempurl.com/api/Accepter";
+const postUrl = "http://sairaali51-001-site1.ftempurl.com/api/Post";
+const commentUrl= "http://sairaali51-001-site1.ftempurl.com/api/Comment";
+const notiUrl="http://sairaali51-001-site1.ftempurl.com/api/Notification";
 
 @Injectable() 
 export class Repository {
@@ -23,105 +28,149 @@ export class Repository {
     admins: admin[];
     //Accepter
     accepter: accepter;
-    accepters: accepter[]=[];
+    accepters: accepter[];
     //Donor
     donor: donor;
     donors: donor[];
     //doc
-    onUploadFinished: any;
     docs: docupload[];
     //Post
     post: post;
-    posts: post[]=[];
+    posts: post[];
+    //notification
+    noti: notificatio;
+    notis: notificatio[];
+    //donation
+    donation: donation;
+    donations: donation[];
     //Img
     imgs: imageupload[];
     //Login
     login: login;
     logins: login[];
+    //comment
+    com: comment;
+    comments: comment[];
+    //
+    uId: number;
     
     
     constructor(private http: HttpClient)
     {         
-        ;
+        
     }
 res:string;
+
+//Notification
+// createNotification(acce: comment,formData: FormData) 
+//     {         
+//         let data = {            
+//             id:acce.comment_id
+//         };
+//         console.log(data); 
+//         this.http.post<number>(commentUrl, data)             
+//             .subscribe(id => {                 
+//                 acce.comment_id = id;        
+//             });  
+        
+//         return "created";
+//     }
+    getNotification(id: number){
+        return this.http.get(notiUrl+"/" + id);
+    }
+    getNotifications(related = false){
+        return this.http.get(`${notiUrl}?related=${related}`);
+    }
+    get Notification() : notificatio{
+        console.log("data received");
+        return this.com;
+    }
+    replaceNotifications(acce: notificatio) {         
+        // let data = {             
+        //      
+        //            
+        // };         
+        this.http.put(`${notiUrl}/${acce.id}`,acce)             
+        .subscribe(() => this.getpost(acce.id));     
+    }
+
+
+
 
 //Login
 createLogin(logg: login,id:number) 
     {        
         let data = {       
-            id:logg.Id,email:logg.email,password:logg.password,type:logg.type
+            id:logg.id,email:logg.email,password:logg.password,type:logg.type
         };
         console.log(data); 
         this.http.post<number>(loginUrl, data)             
-            .subscribe(id => {                 
-                logg.Id = id;                 
+            .subscribe(res => {                 
+                this.uId = res;       
+                console.log(res);     
+                sessionStorage.setItem('userId',res.toLocaleString()); 
+                console.log(sessionStorage.getItem('userId'));
                 this.logins.push(logg);   
         });
-        this.res= localStorage.getItem('loginId');
-        console.log(this.res);
         return "created";
     }
-    type = sessionStorage.getItem('type');
-    getLogins(related = false){
-        this.http.get(`${loginUrl}?related=${related}`).subscribe(res=>{
-            let l:login;
 
-            l.Id = res['id']
-        });
-
+//Comment
+createComment(acce: comment) 
+    {         
+         
+        this.http.post<number>(commentUrl, acce)             
+            .subscribe(id => {                 
+                acce.comment_id = id;      
+            });  
+        
+        return "created";
     }
-    getAuthAccepter(id: number){
-        this.http.get<accepter>(loginUrl+"/" + id + this.type)
-        .subscribe(a => this.accepter = a);
-        console.log(this.type);
+    getcomment(id: number){
+      return this.http.get(commentUrl+"/" + id);
     }
-    getAuthDonor(id: number){
-        this.http.get<donor>(loginUrl+"/" + id+ "/donor")
-        .subscribe(a => this.donor = a);
+    getComments(related = false){
+        return this.http.get(`${commentUrl}?related=${related}`);
     }
-    getAuthAdmin(id: number){
-        this.http.get<admin>(loginUrl+"/" + id + "/admin")
-        .subscribe(a => this.admin = a);
+    get Comment() : comment{
+        console.log("data received");
+        return this.com;
+    }
+    replaceComment(acce: comment) {         
+        // let data = {             
+        //      
+        //            
+        // };         
+        this.http.put(`${commentUrl}/${acce.comment_id}`, acce)             
+        .subscribe(() => this.getpost(acce.comment_id));     
+        console.log(acce);
     }
 
 
 //Posts
-createPost(acce: post,formData: FormData) 
+createPost(acce: post) 
     {         
         let data = {            
-            id:acce.postId,Title: acce.title,            
+            id:acce.post_id,Title: acce.title,            
             Category: acce.category, description: acce.description, 
-            targetAmount: acce.targetAmount, receivedAmount: acce.receivedAmount,             
+            targetAmount: acce.target_amount, receivedAmount: acce.received_amount,             
             time: acce.time, shares: acce.shares,
-            Urgent: acce.urgent, accepterId: acce.accepterId,             
-            donorId: acce.donorId
+            Urgent: acce.urgent, accepterId: acce.accepter_id,             
+            donorId: acce.donor_id
         };
         console.log(data); 
         this.http.post<number>(postUrl, data)             
             .subscribe(id => {                 
-                acce.postId = id;                 
+                acce.post_id = id;                 
                 this.posts.push(acce);   
             });  
-        this.http.post(postUrl+"/" + 15,formData, {reportProgress: true, observe: 'events'})
-        .subscribe(event => {
-          if (event.type === HttpEventType.UploadProgress)
-            console.log("loading");
-            // this.progress = Math.round(100 * event.loaded / event.total);
-          else if (event.type === HttpEventType.Response) {
-            // this.message = 'Upload success.';
-            this.onUploadFinished.emit(event.body);
-          }
-        });
         return "created";
     }
     getpost(id: number){
-        this.http.get<post>(postUrl+"/" + id)
-        .subscribe(a => this.post = a);
+       return this.http.get<post>(postUrl+"/" + id);
     }
     getposts(related = false){
-        this.http.get<post[]>(`${postUrl}?related=${related}`)
-        .subscribe(msgs => this.posts = msgs);
+       return  this.http.get<post[]>(`${postUrl}?related=${related}`);
     }
     get Post() : post{
         console.log("data received");
@@ -129,72 +178,57 @@ createPost(acce: post,formData: FormData)
     }
     replacePost(acce: post) {         
         let data = {             
-            id:acce.postId,Title: acce.title,            
+            id:acce.post_id,Title: acce.title,            
             Category: acce.category, description: acce.description, 
-            targetAmount: acce.targetAmount, receivedAmount: acce.receivedAmount,             
-            time: acce.time, shares: acce.shares,
-            Urgent: acce.urgent, accepterId: acce.accepterId,             
-            donorId: acce.donorId         
+            targetAmount: acce.target_amount, receivedAmount: acce.received_amount, shares: acce.shares 
         };         
-        this.http.put(`${postUrl}/${acce.postId}`, data)             
-        .subscribe(() => this.getpost(acce.postId));     
+        this.http.put(`${postUrl}/${acce.post_id}`, data)             
+        .subscribe(() => this.getpost(acce.post_id));     
     }
 
 
 //Donors
-createDonor(acce: donor,formData: FormData,id : Number) 
+createDonor(acce: donor) 
     {         
         let data = {            
-            DonorName: acce.donorName,            
+            donor_name: acce.donor_name,            
             email: acce.email, password: acce.password, 
-            contactNo: acce.contactNo, cnic: acce.cnic,             
-            dob: acce.dob, country: acce.country,
+            contact_no: acce.contact_no, CNIC: acce.CNIC,             
+            DOB: acce.DOB, country: acce.country,
             city: acce.city, state: acce.state,             
-            address: acce.address, zipCode: acce.zipCode,
+            address: acce.address, zip_code: acce.zip_code,
             gender: acce.gender, occupation: acce.occupation,
             code: acce.code,             
-            status: acce.status,adminId:acce.adminId   
+            status: acce.status,admin_id:acce.admin_id
         };
         console.log(data); 
         this.http.post<number>(donorUrl, data)             
             .subscribe(id => {                 
-                acce.donorId = id;                 
-                this.donors.push(acce);   
-            });  
-        this.http.post(donorUrl+"/image",formData, {reportProgress: true, observe: 'events'})
-        .subscribe(event => {
-          if (event.type === HttpEventType.UploadProgress)
-            console.log("loading");
-            // this.progress = Math.round(100 * event.loaded / event.total);
-          else if (event.type === HttpEventType.Response) {
-            // this.message = 'Upload success.';
-            this.onUploadFinished.emit(event.body);
-          }
-        });
-            return "created";
+                acce.donor_id = id;                 
+                this.donors.push(acce);  
+            }); 
+        return "created";
     }
     replaceDonor(acce: donor) {         
         let data = {             
-            DonorName: acce.donorName,            
+            donor_name: acce.donor_name,            
             email: acce.email, password: acce.password, 
-            contactNo: acce.contactNo, cnic: acce.cnic,             
-            dob: acce.dob, country: acce.country,
+            contact_no: acce.contact_no, CNIC: acce.CNIC,             
+            DOB: acce.DOB, country: acce.country,
             city: acce.city, state: acce.state,             
-            address: acce.address, zipCode: acce.zipCode,
+            address: acce.address, zip_code: acce.zip_code,
             gender: acce.gender, occupation: acce.occupation,
             code: acce.code,             
-            status: acce.status,adminId:acce.adminId   
+            status: acce.status,admin_id:acce.admin_id
         };         
-        this.http.put(`${donorUrl}/${acce.donorId}`, data)             
-        .subscribe(() => this.getdonor(acce.donorId));     
+        this.http.put(`${donorUrl}/${acce.donor_id}`, data)             
+        .subscribe(() => this.getdonor(acce.donor_id));
     }
     getdonor(id: number){
-        this.http.get<donor>(donorUrl+"/" + id)
-        .subscribe(a => this.donor = a);
+        return this.http.get<donor>(donorUrl+"/" + id)
     }
     getdonors(related = false){
-        this.http.get<donor[]>(`${donorUrl}?related=${related}`)
-        .subscribe(msgs => this.donors = msgs);
+       return this.http.get<donor[]>(`${donorUrl}?related=${related}`)
     }
     get Donor() : donor{
         console.log("data received");
@@ -202,97 +236,87 @@ createDonor(acce: donor,formData: FormData,id : Number)
     }
 
 //Accepters
-    createAccepter(acce: accepter,formData: FormData,id : number) 
+    createAccepter(acce: accepter,formData: FormData) 
     {         
-        let data = {            
-            id:acce.accepterId,AccepterName: acce.accepterName, fatherName: acce.fatherName,             
+        let data = {          
+            accepter_name: acce.accepter_name, father_name: acce.father_name,             
             email: acce.email, password: acce.password, 
-            contactNo: acce.contactNo, cnic: acce.cnic,             
-            dob: acce.dob, country: acce.country,
+            contact_no: acce.contact_no, cnic: acce.CNIC,             
+            dob: acce.DOB, country: acce.country,
             city: acce.city, state: acce.state,             
-            address: acce.address, zipCode: acce.zipCode,
+            address: acce.address, zip_code: acce.zip_code,
             gender: acce.gender, occupation: acce.occupation,             
-            familyMembers: acce.familyMembers, maritalStatus: acce.maritalStatus,
+            family_members: acce.family_members, marital_status: acce.marital_status,
             salary: acce.salary, code: acce.code,             
-            status: acce.status,adminId:acce.adminId   
+            status: acce.status,adminId:acce.admin_id
         };
         console.log(data); 
         this.http.post<number>(accepterUrl, data)             
             .subscribe(id => {                 
-                acce.accepterId = id;                 
+                acce.accepter_id = id;                 
                 this.accepters.push(acce);   
             });  
-        this.http.post(accepterUrl + "/" + 40,formData, {reportProgress: true, observe: 'events'})
-        .subscribe(event => {
-          if (event.type === HttpEventType.UploadProgress)
-            console.log("loading");
-            // this.progress = Math.round(100 * event.loaded / event.total);
-          else if (event.type === HttpEventType.Response) {
-            // this.message = 'Upload success.';
-            this.onUploadFinished.emit(event.body);
-          }
-        });
-            return "created";
+        this.http.post(accepterUrl + "/" + acce.accepter_id,formData)
+        .subscribe();
+        return "created";
     }
     replaceAccepter(acce: accepter) {         
         let data = {             
-            id:acce.accepterId,AccepterName: acce.accepterName, fatherName: acce.fatherName,             
+            accepter_name: acce.accepter_name, father_name: acce.father_name,             
             email: acce.email, password: acce.password, 
-            contactNo: acce.contactNo, cnic: acce.cnic,             
-            dob: acce.dob, country: acce.country,
+            contact_no: acce.contact_no, cnic: acce.CNIC,             
+            dob: acce.DOB, country: acce.country,
             city: acce.city, state: acce.state,             
-            address: acce.address, zipCode: acce.zipCode,
+            address: acce.address, zipCode: acce.zip_code,
             gender: acce.gender, occupation: acce.occupation,             
-            familyMembers: acce.familyMembers, maritalStatus: acce.maritalStatus,
+            family_members: acce.family_members, marital_status: acce.marital_status,
             salary: acce.salary, code: acce.code,             
-            status: acce.status,adminId:acce.adminId
+            status: acce.status,adminId:acce.admin_id
         };         
-        this.http.put(`${accepterUrl}/${acce.accepterId}`, data)             
-        .subscribe(() => this.getdonor(acce.accepterId));     
+        this.http.put(`${accepterUrl}/${acce.accepter_id}`, data)             
+        .subscribe(() => this.getdonor(acce.accepter_id));     
     }
     getaccepter(id: number){
-        this.http.get<accepter>("/api/accepters/" + id)
-        .subscribe(a => this.accepter = a);
+        return this.http.get<accepter>(accepterUrl+"/" + id)
     }
     getaccepeters(related = false){
-        this.http.get<accepter[]>(`${accepterUrl}?related=${related}`)
-        .subscribe(msgs => this.accepters = msgs);
+       return this.http.get<accepter[]>(`${accepterUrl}?related=${related}`)
+        
     }
     get Accepter() : accepter{
-        console.log("data received");
         return this.accepter;
     }
     
 //Admin
     createAdmin(prod: admin) {         
         let data = {             
-            adminName: prod.adminName, email: prod.email,             
-            password: prod.password, contactNo: prod.contactNo,
-            gender: prod.gender, dob: prod.dob,             
-            cnic: prod.cnic, country: prod.country,
+            adminName: prod.admin_name, email: prod.email,             
+            password: prod.password, contactNo: prod.contact_no,
+            gender: prod.gender, dob: prod.DOB,             
+            cnic: prod.CNIC, country: prod.country,
             city: prod.city, state: prod.state,             
             address: prod.address, code: prod.code,
             status: prod.status
         };
         this.http.post<number>(adminsUrl, data)             
         .subscribe(id => {                 
-            prod.adminId = id;                 
+            prod.admin_id = id;                 
             this.admins.push(prod);   
             alert("from repo");          
         });     
     }
     replaceAdmin(prod: admin) {         
         let data = {             
-            adminName: prod.adminName, email: prod.email,             
-            password: prod.password, contactNo: prod.contactNo,
-            gender: prod.gender, dob: prod.dob,             
-            cnic: prod.cnic, country: prod.country,
+            adminName: prod.admin_name, email: prod.email,             
+            password: prod.password, contactNo: prod.contact_no,
+            gender: prod.gender, dob: prod.DOB,             
+            cnic: prod.CNIC, country: prod.country,
             city: prod.city, state: prod.state,             
             address: prod.address, code: prod.code,
             status: prod.status
         };         
-        this.http.put(`${adminsUrl}/${prod.adminId}`, data)             
-        .subscribe(() => this.getdonor(prod.adminId));     
+        this.http.put(`${adminsUrl}/${this.admin.admin_id}`, data)             
+        .subscribe(() => this.getdonor(this.admin.admin_id));     
     }
     getadmin(id: number){
         this.http.get<admin>("/api/admins/" + id)

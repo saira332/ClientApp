@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import {Router} from '@angular/router';
 import { FormBuilder,Validators, FormGroup } from '@angular/forms';
 import { Repository } from 'src/app/models/repository';
 import { login } from 'src/app/models/login.model';
 import { accepter } from 'src/app/models/accepter.model';
-import { logWarnings } from 'protractor/built/driverProviders';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +12,8 @@ import { logWarnings } from 'protractor/built/driverProviders';
 })
 export class LoginComponent implements OnInit {
 
-  // tslint:disable-next-line:variable-name
   constructor(private _router: Router,private fb: FormBuilder, private repo: Repository) { }
-
+  
   formModel = this.fb.group({
     Email: ['', Validators.email],
     Password: ['', Validators.required],
@@ -36,29 +34,30 @@ export class LoginComponent implements OnInit {
       Password: this.formModel.value.Password,
       type: this.formModel.value.type
     };
-    localStorage.setItem('loginId', this.val.toString());
-    sessionStorage.setItem('type',data.type);
+    sessionStorage.setItem('loginId', this.val.toString());
+    sessionStorage.setItem('Usertype',data.type);
     this.repo.createLogin(new login(this.val,data.Email,data.Password,data.type),this.val);
-    if(data.type == "accepter"){
-      this.repo.getAuthAccepter(Number(localStorage.getItem('loginId')));
-    }
-    else if(data.type == "donor")
-    {
-        this.repo.getAuthDonor(Number(localStorage.getItem('loginId')));
-    }
-    else if(data.type == "admin")
-    {
-        this.repo.getAuthAdmin(Number(localStorage.getItem('loginId')));
-    }
-    sessionStorage.setItem('userId',this.repo.accepter.accepterId.toString());
-    // localStorage.setItem('userId',this.repo.accepter.accepterId.toString());
-    console.log(this.repo.accepter.accepterId);
+    sessionStorage.setItem('uType',data.type);
     alert("loged in");
     console.log(data);
-    this._router.navigate(['profile']);
+    if(sessionStorage.getItem('userId')){
+      if(data.type =="accepter"){
+        this._router.navigate(['/profile']);
+      }
+      else if(data.type =="donor"){
+        this._router.navigate(['/donorProfile'])
+      }
+      else if(data.type =="admin")
+      {
+        this._router.navigate(['/dashboard']);
+      }
+      
+    }
+    
   }
 
-  
+
+
   redirecttoLogin():void{
     alert('clicked');
     this._router.navigate(['/login']);

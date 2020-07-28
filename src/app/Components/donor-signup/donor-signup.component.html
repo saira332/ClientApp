@@ -1,4 +1,4 @@
-    <div class="box" > 
+    <div class="box container"> 
         <div class="form_box">
             <div class="button_box">
                 <div id="btn"></div>
@@ -9,13 +9,8 @@
                 <h2>Genral Detail</h2>
                 <div class="form-group required">
                     <label>Name</label>
-                    <input type=" text" class="input-field" placeholder="donor_name" formControlName="Name" required><br>
+                    <input type=" text" class="input-field" placeholder="e.g Alex" formControlName="Name" required><br>
                     <label class="text-danger" *ngIf="formModel.get('Name').touched && formModel.get('Name').errors?.required">This field is mandatory.</label>
-                </div>
-                <div class="form-group required">
-                    <label>Father Name</label>
-                    <input type="text" class="input-field" placeholder="Father Name" formControlName="FatherName" required><br>
-                    <label class="text-danger" *ngIf="formModel.get('FatherName').touched && formModel.get('FatherName').errors?.required">This field is mandatory.</label>
                 </div>
                 <div class="form-group required">
                     <label>CNIC</label>
@@ -58,18 +53,18 @@
                 </div>
                 <div class="form-group required">
                     <label>Zip Code</label>
-                    <input type="text" class="input-field-1" placeholder="Zip Code" formControlName="Zip" required><br>
+                    <input type="text" class="input-field-1" placeholder="e.g 3423" formControlName="Zip" required><br>
                     <label class="text-danger" *ngIf=" formModel.get('Zip').touched &&  formModel.get('Zip').errors?.required">This field is mandatory.</label>
                     <label class="text-danger" *ngIf="formModel.get('Zip').touched &&  formModel.get('Zip').errors?.pattern">Enter only Numbers</label>
                 </div>
                 <div class="form-group required">
                     <label>Address</label>
-                    <input type="text" class="input-field-1" placeholder="address" formControlName="Address" required><br>
+                    <input type="text" class="input-field-1" placeholder="e.g Street # 5..." formControlName="Address" required><br>
                     <label class="text-danger" *ngIf=" formModel.get('Address').touched &&  formModel.get('Address').errors?.required">This field is mandatory.</label>
                 </div>
                 <div class="form-group required">
                     <label>Contact No.</label>
-                    <input type="text" class="input-field-1" placeholder="Contact No." formControlName="ContactNo" required><br>
+                    <input type="text" class="input-field-1" placeholder="e.g 03487700331" formControlName="ContactNo" required><br>
                     <label class="text-danger" *ngIf="formModel.get('ContactNo').touched &&  formModel.get('ContactNo').errors?.required">This field is mandatory.</label>
                     <label class="text-danger" *ngIf="formModel.get('ContactNo').touched &&  formModel.get('ContactNo').errors?.minlength">Minimum 11 characters required.</label>
                     <label class="text-danger" *ngIf="formModel.get('ContactNo').touched &&  formModel.get('ContactNo').errors?.maxlength">Maximum 11 characters required.</label>
@@ -78,28 +73,22 @@
                     <h2>Security</h2>
                 <div class="form-group required">
                     <label>Email</label>
-                    <input type="email" class="input-field" placeholder="Email@gmail.com" formControlName="Email" required><br>
+                    <input type="email" class="input-field" placeholder="e.g Email@gmail.com" formControlName="Email" required><br>
                     <label class="text-danger" *ngIf=" formModel.get('Email').touched &&  formModel.get('Email').errors?.email">Invalid email address.</label>
                 </div>
                 <div formGroupName="Passwords">
                     <div class="form-group required">
                         <label>Password</label>
-                        <input type="password" class="input-field" placeholder="enter password" formControlName="Password" required><br>
+                        <input type="password" class="input-field" placeholder="Minimum length is 8" formControlName="Password" required><br>
                         <label class="text-danger" *ngIf="formModel.get('Passwords.Password').touched &&  formModel.get('Passwords.Password').errors?.required">This field is mandatory.</label>
                         <label class="text-danger" *ngIf="formModel.get('Passwords.Password').touched &&  formModel.get('Passwords.Password').errors?.minlength">Minimum 8 characters required.</label>
                     </div>
                     <div class="form-group required">
                         <label>Confirm password</label>
-                        <input type="password" class="input-field" placeholder="confirm password" formControlName="ConfirmPassword" required><br>
+                        <input type="password" class="input-field" placeholder="Confirm password" formControlName="ConfirmPassword" required><br>
                         <label class="text-danger" *ngIf="formModel.get('Passwords.ConfirmPassword').touched &&  formModel.get('Passwords.ConfirmPassword').errors?.required">This field is mandatory.</label>
                         <label class="text-danger" *ngIf="formModel.get('Passwords.ConfirmPassword').touched &&  formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Confirm Password does not match.</label>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-3">
-                        <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
-                        <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
-                      </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-8 offset-md-2">

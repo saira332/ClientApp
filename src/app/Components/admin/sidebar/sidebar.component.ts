@@ -11,8 +11,20 @@ export class SidebarComponent implements OnInit {
   constructor(private _router: Router) { }
 
   redirectToProfile():void{
-    alert("Causes");
     this._router.navigate(['/userProfile'])
+  }
+
+  redirectTonotification():void{
+    this._router.navigate(['/notification'])
+  }
+  redirectToDash():void{
+    this._router.navigate(['/dashboard'])
+  }
+  redirectToAccep():void{
+    this._router.navigate(['/accepter'])
+  }
+  redirectToDonor():void{
+    this._router.navigate(['/donor'])
   }
 
   ngOnInit(): void {
